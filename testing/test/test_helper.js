@@ -31,12 +31,15 @@ function renderComponent(ComponentClass, props={}, state={}) {
 
 // Build helper for simulating events
 $.fn.simulate = function(eventName, value) {
+
+  // 'this' is a reference to the selected html element
   if(value) {
     this.val(value);
   }
+
+  //trigger event on the first element of the array
   TestUtils.Simulate[eventName](this[0]);
 }
-
 
 // Set up chai-jquery
 chaiJquery(chai, chai.util, $);
