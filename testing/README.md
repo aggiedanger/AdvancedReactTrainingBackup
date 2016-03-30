@@ -1,0 +1,1 @@
+This repo is not my own work.  This is a backup of work doing training from Stephen Grider's Udemy advanced react redux course.  These are not my ideas they are his only and are not meant to represent my ideas.  I am only using this as a backup of my work and an example I can refer back to later.  
