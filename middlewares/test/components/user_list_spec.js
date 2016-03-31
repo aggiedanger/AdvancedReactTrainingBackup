@@ -1,5 +1,7 @@
 import { expect, renderComponent } from '../test_helper';
 import UserList from '../../src/components/user_list';
+import sinon from 'sinon';
+import axios from 'axios';
 
 const DUMMY_STATE = [
   {
@@ -33,7 +35,12 @@ describe('user list',() => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(UserList, {mock: true}, {users: DUMMY_STATE})
+    sinon.stub(axios, 'get').returns({data: []});
+    component = renderComponent(UserList, {}, {users: DUMMY_STATE});
+  });
+
+  afterEach(function() {
+      axios.get.restore();
   });
 
   it('lists out all the users', () => {

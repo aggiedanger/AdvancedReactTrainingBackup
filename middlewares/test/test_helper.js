@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
 import sinon from 'sinon';
+import axios from 'axios';
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
@@ -29,7 +30,6 @@ function propagateToGlobal (window) {
     global[key] = window[key]
   }
 }
-
 
 chaiJquery(chai, chai.util, $);
 

@@ -5,9 +5,7 @@ import * as actions from '../actions';
 class UserList extends Component {
 
   componentWillMount(){
-    if(!this.props.mock){
-      this.props.fetchUsers();
-    }
+    this.props.fetchUsers();
   }
 
   renderUser(user){

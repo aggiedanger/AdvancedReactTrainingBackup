@@ -1,27 +1,21 @@
 import { renderComponent , expect } from '../test_helper';
 import App from '../../src/components/app';
 import sinon from 'sinon';
+import axios from 'axios';
 
 describe('App' , () => {
   let component;
 
   beforeEach(function() {
-    console.log('thisss',this.xhr);
-     this.xhr = sinon.useFakeXMLHttpRequest();
-    //
-         this.requests = [];
-         this.xhr.onCreate = function(xhr) {
-             this.requests.push(xhr);
-         }.bind(this);
+    sinon.stub(axios, 'get').returns({data: []});
     component = renderComponent(App, {}, {users: []});
   });
 
   afterEach(function() {
-        //this.xhr.restore();
-    });
-
+      axios.get.restore();
+  });
 
   it('renders something', () => {
-    //expect(component).to.exist;
+    expect(component).to.exist;
   });
 });
