@@ -1,6 +1,6 @@
 import { expect } from '../../test_helper';
 import authenticationReducer from '../../../src/reducers/auth/authentication';
-import { AUTHORIZE } from '../../../src/actions/types';
+import { AUTHORIZE, LOGOUT } from '../../../src/actions/types';
 
 const INITIAL_STATE = {
   authorized: false,
@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 }
 
 const auth_payload = {
-  token: 'some token'
+  data: {token: 'some token'}
 }
 
 describe('auth reducer', () => {
@@ -22,9 +22,18 @@ describe('auth reducer', () => {
     expect(STATE).to.eql(INITIAL_STATE);
   });
 
-  it('updates state with proper authentication', () => {
-    const STATE = authenticationReducer(undefined, { type: AUTHORIZE, payload:auth_payload });
-    expect(STATE).to.eql({token: 'some token', authorized:true });
+  describe('authorize', ()=> {
+    it('updates state with proper authentication', () => {
+      const STATE = authenticationReducer(undefined, { type: AUTHORIZE, payload:auth_payload });
+      expect(STATE).to.eql({token: 'some token', authorized:true });
+    });
+  });
+
+  describe('logout', () => {
+    it('should erase the authentication data', () => {
+      const STATE = authenticationReducer(undefined, { type: LOGOUT, payload: {}});
+      expect(STATE).to.eql(INITIAL_STATE);
+    });
   });
 
 

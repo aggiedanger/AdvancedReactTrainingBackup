@@ -19,9 +19,8 @@ export default function(state=INITIAL_STATE, action={}){
 }
 
 function handleAuth(payload){
-  console.log(payload);
   if(payload.data && payload.data.token && payload.data.token != ''){
-    return{token: payload.token, authorized: true};
+    return{token: payload.data.token, authorized: true};
   }
 
   return {
